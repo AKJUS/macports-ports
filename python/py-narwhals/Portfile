@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-narwhals
+version             1.33.0
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Extremely lightweight and extensible compatibility layer between \
+                    dataframe libraries.
+long_description    {*}${description}
+homepage            https://github.com/narwhals-dev/narwhals
+
+checksums           rmd160  17ac6bbde7b6bbe569e8b9fd26e08e7578682b0e \
+                    sha256  6233d2457debf4b5fe4a1da54530c6fe2d84326f4a8e3bca35bbbff580a347cb \
+                    size    262554
+
+python.versions     39 310 311 312 313
+
+python.pep517_backend \
+                    hatch
+
+if {${name} ne ${subport}} {
+    variant pandas description {build with pandas support} {
+        depends_lib-append  \
+                    port:py${python.version}-pandas
+    }
+}
