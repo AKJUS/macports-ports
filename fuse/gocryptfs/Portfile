@@ -5,12 +5,11 @@ PortGroup           golang 1.0
 PortGroup           fuse 1.0
 
 go.setup            github.com/rfjakob/gocryptfs 2.5.4 v
-revision            0
+revision            1
 
 categories          fuse
 maintainers         {i0ntempest @i0ntempest} openmaintainer
 license             MIT
-platforms           darwin
 description         Encrypted overlay filesystem written in Go
 long_description    {*}${description}
 homepage            https://nuetzlich.net/gocryptfs/
@@ -132,14 +131,15 @@ build.args-append   -ldflags="${ldflags}" \
                     -tags without_openssl
 
 post-build {
-    system -W ${worksrcpath}/${name}-xray "${build.env} ${build.cmd} [join ${build.args}]"
+    set envargs [lmap e ${build.env} {shellescape $e}]
+    system -W ${worksrcpath}/${name}-xray "env [join $envargs] ${build.cmd} [join ${build.args}]"
 }
 
 destroot {
     xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
     xinstall -m 0755 ${worksrcpath}/${name}-xray/${name}-xray ${destroot}${prefix}/bin/
-    xinstall -m 0755 ${worksrcpath}/Documentation/gocryptfs.1 ${destroot}${prefix}/share/man/man1
-    xinstall -m 0755 ${worksrcpath}/Documentation/gocryptfs-xray.1 ${destroot}${prefix}/share/man/man1
+    xinstall -m 0644 ${worksrcpath}/Documentation/gocryptfs.1 ${destroot}${prefix}/share/man/man1
+    xinstall -m 0644 ${worksrcpath}/Documentation/gocryptfs-xray.1 ${destroot}${prefix}/share/man/man1
 }
 
 # According to [1] there is no benefit to build gocryptfs with openssl on M1 Macs.
