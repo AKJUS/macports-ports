@@ -5,10 +5,10 @@ PortGroup           python 1.0
 
 name                py-ruamel-yaml
 
-version             0.18.10
-checksums           rmd160  851d8b76ab644332f033f87a9d0e41f9f9986018 \
-                    sha256  20c86ab29ac2153f80a428e1254a8adf686d3383df04490514ca3b79a362db58 \
-                    size    143447
+version             0.18.12
+checksums           rmd160  a539f749cd731ec2fa252e6ec20479bda6b389e5 \
+                    sha256  5a38fd5ce39d223bebb9e3a6779e86b9427a03fb0bf9f270060f8b149cffe5e2 \
+                    size    144847
 revision            0
 
 license             MIT

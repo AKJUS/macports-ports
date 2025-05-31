@@ -6,13 +6,13 @@ PortGroup           github 1.0
 
 name                py-meson
 # update version and revision also in the meson port
-github.setup        mesonbuild meson 1.8.0
+github.setup        mesonbuild meson 1.8.1
 github.tarball_from releases
-revision            1
+revision            0
 
-checksums           rmd160  d29fd5364610e7ec3e9d615d76759c99e6610af0 \
-                    sha256  0a9b23311271519bd03dca12d7d8b0eab582c3a2c5da433d465b6e519dc88e2f \
-                    size    2334911
+checksums           rmd160  ca9857fa07f13508399240db6cfde7c439f83eda \
+                    sha256  b4e3b80e8fa633555abf447a95a700aba1585419467b2710d5e5bf88df0a7011 \
+                    size    2332007
 
 license             Apache-2
 categories-append   devel
@@ -28,7 +28,7 @@ long_description    Meson is a build system designed to optimize programmer prod
                     Valgrind, CCache and the like. It is both extremely fast, and, even more importantly, \
                     as user friendly as possible.
 
-python.versions     38 39 310 311 312 313
+python.versions     39 310 311 312 313
 github.livecheck.regex {([0-9.]+)}
 
 if {${subport} ne ${name}} {
