@@ -656,7 +656,7 @@ if {${name} eq ${subport}} {
 }
 
 subport alcom {
-    github.setup            anatawa12 vrc-get 1.1.0-rc.1 gui-v
+    github.setup            anatawa12 vrc-get 1.1.0-rc.4 gui-v
     github.tarball_from     archive
     revision                0
     description             ALternative (VRChat) creator COMpanion
@@ -664,9 +664,9 @@ subport alcom {
                             VRChat Creator Companion (VCC)
 
     checksums               ${name}-${version}${extract.suffix} \
-                            rmd160  82a12988df41c845b7e390472a506b049243cd34 \
-                            sha256  51f27b79b4f70d271e66fc64a4286a18150a48b2e377e4534b11c30426ff0724 \
-                            size    5715539
+                            rmd160  2ce06c1cc0010624d3c740144d13e08ef3e4f193 \
+                            sha256  c978f76b397a4f3327f73e634ae5138362e42075955eb14722e2ad08052072f8 \
+                            size    5717968
 
     depends_build-append    path:bin/node:nodejs22 \
                             path:bin/npm:npm11
