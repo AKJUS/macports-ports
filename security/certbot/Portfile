@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        certbot certbot 4.0.0 v
+github.setup        certbot certbot 4.1.1 v
 revision            0
 categories          security
 license             Apache-2
@@ -17,10 +17,9 @@ homepage            https://certbot.eff.org/
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  351b463cc10f8d1374db7aaf2419527f0498e1bc \
-                    sha256  a867bfbb5126516c12d4c8a93909ef1e4d5309fc4e9f5b97b2d987b0ffd4bbe3 \
-                    size    439556
-
+checksums           rmd160  e4af0f43f2105e5d5ed3a1fa7a311ae641bf36d4 \
+                    sha256  d1fdde3174bcf1d68f7a8dca070341acec28b78ef92ad2dd18b8d49959e96779 \
+                    size    441624
 
 variant python39 conflicts python310 python311 python312 python313 description {Use Python 3.9} {}
 variant python310 conflicts python39 python311 python312 python313 description {Use Python 3.10} {}
@@ -52,9 +51,9 @@ depends_lib-append  port:py${python.version}-acme \
 
 subport ${name} {
     post-patch {
-        reinplace "s|/etc/|${prefix}/etc/|" ${worksrcpath}/certbot/compat/misc.py
-        reinplace "s|/var/lib/|${prefix}/var/db/|" ${worksrcpath}/certbot/compat/misc.py
-        reinplace "s|/var/log/|${prefix}/var/log/|" ${worksrcpath}/certbot/compat/misc.py
+        reinplace "s|/etc/|${prefix}/etc/|" ${worksrcpath}/src/certbot/compat/misc.py
+        reinplace "s|/var/lib/|${prefix}/var/db/|" ${worksrcpath}/src/certbot/compat/misc.py
+        reinplace "s|/var/log/|${prefix}/var/log/|" ${worksrcpath}/src/certbot/compat/misc.py
     }
 
     variant docs description {Build man pages} {
@@ -95,9 +94,9 @@ subport ${name}-apache {
 
     distname            ${name}_apache-${version}
 
-    checksums           rmd160  4871eb76fd235458562c9d583d2fb173e3ef8d15 \
-                        sha256  507f9a336bd95c25548f449d8307eead6f875186a13049de173d6833371910a2 \
-                        size    183105
+    checksums       rmd160  4fdecc650ab839de2a2b6919784f3000f15554e4 \
+                    sha256  8b43f9f4b3cb504109cae58b7b8edbadb62bd3fbb1e796fe17ea426a7195b41f \
+                    size    183384
 
     depends_lib-append  port:mod_perl2 \
                         port:py${python.version}-python-augeas
@@ -114,9 +113,9 @@ subport ${name}-nginx {
 
     distname            ${name}_nginx-${version}
 
-    checksums           rmd160  f448df253a33d1a0bdc7aa7cf37d13703fa46728 \
-                        sha256  4478c3e13e04b49f95675d83adaacdcf1356f8fac0824e236f893f2f5a1d991c \
-                        size    79653
+    checksums       rmd160  da7c63d8d6aff73c06cdc8be1665e26d520341f1 \
+                    sha256  9b03a0c877d8004bc8b077d6aa8419257300a23c7d72f9d8fe268a0a3bb859f2 \
+                    size    80191
 
     depends_lib-append  port:py${python.version}-parsing
 
@@ -124,7 +123,7 @@ subport ${name}-nginx {
 
     post-patch {
         reinplace "s|%PREFIX%|${prefix}|" \
-        ${worksrcpath}/certbot_nginx/_internal/constants.py
+        ${worksrcpath}/src/certbot_nginx/_internal/constants.py
     }
 }
 
@@ -142,9 +141,9 @@ subport ${name}-dns-cloudflare {
 
     distname            ${name}_dns_cloudflare-${version}
 
-    checksums           rmd160  d70301bbee9e4bfbd3c8dac3cc39d177fe231b1c \
-                        sha256  3cc9752b1fbca8e16de8ccd23675d345505a529737855398db655b3413e711f8 \
-                        size    16391
+    checksums       rmd160  d9971d2caae1b68206204c309fcd380d682523de \
+                    sha256  ab42e92ebac8909b40341d8fb0795bf4c938f71d1443bcda120c6ca8894d002a \
+                    size    16190
 
     depends_lib-append  port:py${python.version}-cloudflare2
 }
@@ -158,9 +157,9 @@ subport ${name}-dns-digitalocean {
 
     distname            ${name}_dns_digitalocean-${version}
 
-    checksums           rmd160  a25bd894a0af9c938e72e61cc637b8cffc567d55 \
-                        sha256  00ce5b7c6fdcf360ab65558ec0e9c9a7247ddeb7ac8355bca3f5ca43496b0b87 \
-                        size    14571
+    checksums       rmd160  a5051830faeae6a67a88b43c6a7c7d3a316be722 \
+                    sha256  c2dca249f23eac2ad20b2aaef4773a38489c49799cce1a16cd227138e9112862 \
+                    size    14397
 
     depends_lib-append  port:py${python.version}-digitalocean
 }
@@ -174,9 +173,9 @@ subport ${name}-dns-dnsimple {
 
     distname            ${name}_dns_dnsimple-${version}
 
-    checksums           rmd160  b7b4aa34526c50ca2932f42a5d2e530045010906 \
-                        sha256  3dbe24c0cd5ada5c833d6de174c7ced9fd2a215547d18ad569ee4fe45aafb41b \
-                        size    11885
+    checksums       rmd160  4c723637a007f3ff0a157fe0e80e56f117b9e164 \
+                    sha256  c47472839a98a02171f992becf7f067a114e64be1fa647b4054f7813a1997afb \
+                    size    12048
 
     depends_lib-append  port:py${python.version}-dns-lexicon
 }
@@ -190,9 +189,9 @@ subport ${name}-dns-dnsmadeeasy {
 
     distname            ${name}_dns_dnsmadeeasy-${version}
 
-    checksums           rmd160  7a80b91a4df8aef77d26b98ea0925c0f854b171b \
-                        sha256  bd42dc87844d764c80e27221b81371670ccce65e564119fe1c99fafe7b0b441e \
-                        size    12069
+    checksums       rmd160  290315e0bac888f226c99cf01b6111bc54dfc0cd \
+                    sha256  3b473ba6d7e7eeda907609343ac7d895182f8fff40de17d3bcc78999f2550aff \
+                    size    12204
 
     depends_lib-append  port:py${python.version}-dns-lexicon
 }
@@ -206,9 +205,9 @@ subport ${name}-dns-gehirn {
 
     distname            ${name}_dns_gehirn-${version}
 
-    checksums           rmd160  2b355b4a14404308da33f4d17b76f086c5ddd123 \
-                        sha256  554c35ab3582b37d3fa628cd0c8186f0801b2925bf21fcb08c9db502b276471f \
-                        size    11966
+    checksums       rmd160  954332b66c371c155c00fe341fd9c06e53b8ca73 \
+                    sha256  305ff044228fe757f3a3ad5d7e1baba802a7a2eb0cd45ebf33c952e72945994a \
+                    size    12111
 
     depends_lib-append  port:py${python.version}-dns-lexicon
 }
@@ -222,9 +221,9 @@ subport ${name}-dns-google {
 
     distname            ${name}_dns_google-${version}
 
-    checksums           rmd160  35036b146e59a359a0b9fc2a85c6969b93134f70 \
-                        sha256  07f78292c7e9b76552a9eed5152c46b285acf3231338850195e895eb3a62a6d3 \
-                        size    25242
+    checksums       rmd160  8ceaf87819b7513483d53ca8682ff52524543ecc \
+                    sha256  c0e0e9779df9d581d85ed058f39f6ab473a39945bce209bec767b47115bc1e7b \
+                    size    25128
 
     depends_lib-append  port:py${python.version}-google-api-python-client \
                         port:py${python.version}-google-auth
@@ -239,9 +238,9 @@ subport ${name}-dns-linode {
 
     distname            ${name}_dns_linode-${version}
 
-    checksums           rmd160  5ad8034ac43d406e569793c2933067bbf4dd2129 \
-                        sha256  a8487117a2c57606e9e554bf967058c598f6f559fdddd13a4c763c97416c999b \
-                        size    12181
+    checksums       rmd160  a46d3aa4e77e40b7e69bc2ddbcfdb8dc86b7186f \
+                    sha256  9801b9f418ddf71e0572f934559557763c256fa27ab88f6303609a35a6944891 \
+                    size    12320
 
     depends_lib-append  port:py${python.version}-dns-lexicon
 }
@@ -255,9 +254,9 @@ subport ${name}-dns-luadns {
 
     distname            ${name}_dns_luadns-${version}
 
-    checksums           rmd160  26134f6b60cc5d1ec9ea84f2592b5666d01f9ec3 \
-                        sha256  2fb5bcd8eeada94f9ad9a5a213d0d90480071a5b5411c326e279fa352bc42ea6 \
-                        size    11888
+    checksums       rmd160  fbf751fe85fd7a94fb177cdb4f5fc5e2fdd3132e \
+                    sha256  b5147c8ab8d2daf2b33e45d973f1422e4d64fe8ae1a664e78d861d861028d35a \
+                    size    12043
 }
 
 subport ${name}-dns-nsone {
@@ -269,9 +268,9 @@ subport ${name}-dns-nsone {
 
     distname            ${name}_dns_nsone-${version}
 
-    checksums           rmd160  b3c91b13ed30594b2986a2d5a98ffd3f1c2286a1 \
-                        sha256  c0bdd769e88147e7b45371c4892c68404a014aa9c4aa48a505f011a94b5e18eb \
-                        size    11966
+    checksums       rmd160  ae5ab9e7307f941e227517c4e96031dfbc6bcd19 \
+                    sha256  733aa1f6f97ec7122820a67c1cda82ecb012bcf4c85ae62c44860b03c7045ccd \
+                    size    12133
 
     depends_lib-append  port:py${python.version}-dns-lexicon
 }
@@ -285,9 +284,9 @@ subport ${name}-dns-ovh {
 
     distname            ${name}_dns_ovh-${version}
 
-    checksums           rmd160  318cfeddbd9911e5edb462aa23c24748123728f7 \
-                        sha256  54b1637572d2ac5bbe78bddc180966ad9c7d90bb6baf820c4e7da4c02e6f21ab \
-                        size    12324
+    checksums       rmd160  fde4b9a055c70571cd18de1771bf9abd2eacd2bd \
+                    sha256  167eca0226261d9ecff3d71b50153c9a88ad57e7981a68e04ebad2f6bc0e9dde \
+                    size    12469
 
     depends_lib-append  port:py${python.version}-dns-lexicon
 }
@@ -301,9 +300,9 @@ subport ${name}-dns-rfc2136 {
 
     distname            ${name}_dns_rfc2136-${version}
 
-    checksums           rmd160  5bf1a665e259bfa620ed069378044ab145466b36 \
-                        sha256  9d403198294c6e2e4bc9df6a5e82a4ed35ab3ffef534307f732e967fec3292d7 \
-                        size    16948
+    checksums       rmd160  0ef8703a57313cedb35bca53ab95c09609813474 \
+                    sha256  fb9a0813cc4a4d5b514b6c5d137463b133a32e79f930b61e77875df080550567 \
+                    size    16763
 
     depends_lib-append  port:py${python.version}-dnspython
 }
@@ -317,9 +316,9 @@ subport ${name}-dns-route53 {
 
     distname            ${name}_dns_route53-${version}
 
-    checksums           rmd160  baeed14f14a8bd7588ba2848ebfe353e66ae4ba4 \
-                        sha256  9b6397d5a0b3a23242346238cdf423b111b16114e59798638b47d1be9a84fc2e \
-                        size    15688
+    checksums       rmd160  d7552f7661a594cbc15d571b87501ed01fd49bdd \
+                    sha256  52da6a9f89ee698a9d157c88fe2648e57b0073ed4bac18c13e9ce22259e4378c \
+                    size    15510
 
     depends_lib-append  port:py${python.version}-boto3
 }
@@ -333,9 +332,9 @@ subport ${name}-dns-sakuracloud {
 
     distname            ${name}_dns_sakuracloud-${version}
 
-    checksums           rmd160  c273d58ed0cc4ae553dcb9d13a823af91121e2f2 \
-                        sha256  b658870de64ffab5f302575f391b8b37774a1cd5d294e8dbbe6db46a794bdd36 \
-                        size    11967
+    checksums       rmd160  85083edec5cf6b62949efc23cd3b4400d6948ef1 \
+                    sha256  3477ff18b26133f67678f1ad50055a5de8081f5b0ece08b4f768ae325e2748b2 \
+                    size    12116
 
     depends_lib-append  port:py${python.version}-dns-lexicon
 }

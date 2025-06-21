@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-superqt
-version             0.7.3
+version             0.7.5
 revision            0
 categories          python
 license             BSD
@@ -13,20 +13,21 @@ description         \"missing\" widgets and components for PyQt/PySide
 long_description    {*}${description} This repository aims to provide high-quality \
                     community-contributed Qt widgets and components for PyQt & PySide \
                     that are not provided in the native QtWidgets module.
+homepage            https://github.com/pyapp-kit/superqt
+
 supported_archs     noarch
 platforms           {darwin any}
-homepage            https://github.com/pyapp-kit/superqt
+
+checksums           rmd160  a48f6964d8281ed659f95409923b7a360c2c8669 \
+                    sha256  6cf6650d5458355cc640e8f77fc09cd228e74053e0cc9df861f15405192dc8b3 \
+                    size    106852
 
 python.versions     39 310 311 312 313
 
-checksums           rmd160  429c0f43e2e4d2f16e5fef220951bad5ce04ca9a \
-                    sha256  14f617a46b1056783a5e32fd384038c4a62bcd320f9cd1e12cfb7d77fd8caa2c \
-                    size    105916
-
-if {${name} ne ${subport}} {
-    python.pep517_backend \
+python.pep517_backend \
                     hatch
 
+if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-hatch-vcs
 
