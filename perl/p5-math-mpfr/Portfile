@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.28 5.30 5.32 5.34
-perl5.setup         Math-MPFR 4.39 ../../authors/id/S/SI/SISYPHUS
+perl5.setup         Math-MPFR 4.43 ../../authors/id/S/SI/SISYPHUS
 revision            0
 maintainers         nomaintainer
 categories-append   math
@@ -12,9 +12,9 @@ license             {Artistic-1 GPL}
 description         Math::MPFR - perl interface to the MPFR (floating point) library.
 long_description    {*}${description}
 
-checksums           rmd160  bb1d92cf6dad7a2e3a1683893a494b8c1a3da1f5 \
-                    sha256  4f89b4a3bc3898710a68621e354a387ec35098a4d3554f85d5004a4aa2cdf365 \
-                    size    240623
+checksums           rmd160  de9ad9025c69b953531789c853bb010b4c8dc8d2 \
+                    sha256  cfa3d6c15c0a7f991927f7e6046543343798351724f9d13868751dbdb476ee89 \
+                    size    243205
 
 if {${perl5.major} != ""} {
     depends_build-append \
